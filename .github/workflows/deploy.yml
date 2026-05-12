@@ -1,0 +1,30 @@
+name: Deploy to production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+    env:
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/var/www/html/CRMRODA1' }}
+      DEPLOY_BRANCH: ${{ vars.DEPLOY_BRANCH || 'main' }}
+    steps:
+      - name: Deploy locally on server runner
+        shell: bash
+        run: |
+          set -e
+          echo "DEPLOY_PATH=$DEPLOY_PATH"
+          echo "DEPLOY_BRANCH=$DEPLOY_BRANCH"
+          git config --global --add safe.directory "$DEPLOY_PATH"
+          cd "$DEPLOY_PATH"
+          git fetch origin "$DEPLOY_BRANCH"
+          git checkout "$DEPLOY_BRANCH"
+          git reset --hard "origin/$DEPLOY_BRANCH"
