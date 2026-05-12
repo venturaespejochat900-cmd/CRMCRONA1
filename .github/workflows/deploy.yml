@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: [self-hosted, linux, x64]
     env:
-      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/var/www/html/CRMRODA1' }}
+      DEPLOY_PATH: ${{ vars.DEPLOY_PATH || '/var/www/html/CRMCRONA1' }}
       DEPLOY_BRANCH: ${{ vars.DEPLOY_BRANCH || 'main' }}
     steps:
       - name: Deploy locally on server runner
