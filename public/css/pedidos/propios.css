@@ -1,0 +1,257 @@
+/** ==== Clases generales ==== */
+.margin-left-10{
+  margin-left: 10px;
+}
+.margin-top-10{
+  margin-top: 10px;
+}
+.margin-top-20{
+  margin-top: 20px;
+}
+.margin-top-30{
+  margin-top: 30px;
+}
+.margin-bottom-10{
+  margin-bottom: 10px !important;
+}
+.margin-bottom-20{
+  margin-bottom: 20px;
+}
+.margin-bottom-30{
+  margin-bottom: 30px;
+}
+
+.ocultar{
+  display: none !important;
+}
+
+@media (min-width: 1200px){
+  .modal-xl {
+    width: 1140px;
+  }
+}
+
+
+
+
+hr{
+  border-top: 1px solid #dedede !important;
+}
+
+/** ==== FIN ==== */
+/** ==== AUMENTAR TAMAÑO LETRA QUE ESTÁ EN INPUTS DEL PUNTO DE VENTA ==== */
+ .letraInputAgrandada{
+  font-size: 15pt;
+} 
+.inputConFocus{
+  background-color:antiquewhite ;
+} 
+
+
+/** ==== Líneas para forzar el botón del config del menú al fondo  */
+#config_sidebar_button {
+  position: absolute;
+  bottom: 0;
+}
+/** ==== FIN ==== */
+
+/** ==== Clases para ocultar las flechas de los input number ==== */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+/** ==== FIN ==== */
+
+
+/** ==== Clases para modificar la vista de los modales y el espaciado en los formularios ====  */
+.form-group {
+  margin-bottom: 0px !important;
+}
+
+.modal-header {
+  padding: 10px !important;
+}
+
+.modal-body {
+  padding: 0px !important;
+}
+/** ==== FIN ==== */
+
+
+/** ==== Clase para el tamaño de la zona de pre confirmación del artículo y el desglose del ticket ==== */
+.sizePreConfirmacionArticuloTPV{
+  height: 270px;
+}
+.sizeDesgloseTicketTPV{
+ height: 52rem;
+ overflow-y: scroll;
+}
+.sizePanelVistaArticulos{
+  height: 220px;
+  overflow-y: scroll;
+}
+/** ==== FIN ==== */
+
+
+/** ==== Pequeño borde para aclarar la separación de las dos columnas de la página ==== */
+.border-right { 
+  border-right: 1px solid #dedede !important;
+}
+/** ==== FIN ==== */
+
+
+
+/** ==== Clases TECLADO NUMÉRICO TPV ==== */
+.ajusteTecladoNumericoColTPV{
+  padding: 0px;
+  height: 55px;
+  
+}
+.ajusteTecladoNumericoColTPV > button{
+  height: 85px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+
+/** ==== FIN ==== */
+
+
+
+/** ==== Clases para las flechas del scroll de las familias TPV ==== */
+#left-button {
+  float: left;
+  width: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#right-button {
+  float: left;
+  width: 30px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+#inner:first-child {
+  margin-left: 0;
+}
+
+#outer {
+  width: 600px;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+}
+/** ==== FIN ==== */
+
+
+/** ==== Clases para la muestra del Total y el precio total ==== */
+.estiloDivIvaTPV{
+  border: 2px solid #4bbc3c;
+  padding: 5px;
+  font-size: 15px;  
+  margin-left: 1px;
+}
+.estiloDivTotalIvaTPV{
+  text-align: right;
+  font-size: 20px;
+}
+
+.estiloDivBaseTPV{
+  border: 2px solid #bc3c3c;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.estiloDivRecargoTPV{
+  border: 2px solid #3cbcab;
+  padding: 5px;
+  font-size: 15px;
+}
+
+.estiloDivTotalRecargoTPV{
+  text-align: right;
+  font-size: 20px;
+}
+
+.estiloDivTotalBaseTPV{
+  text-align: right;
+  font-size: 20px;
+}
+
+.estiloDivTotalTPV{
+  border: 2px solid #3c8dbc;
+  padding: 5px;
+  font-size: 15px;
+}
+.estiloDivTotalPrecioTPV{
+  text-align: right;
+  font-size: 35px;
+}
+/** ==== FIN ==== */
+
+
+
+/** ==== Clase para la correcta visualización de las imágenes de las familias y/o artículos del tpv táctil ==== */
+.pruebaImagenPuntoVenta {
+  position: absolute;
+  top: 2px;
+  left: 10px;
+  width: 100px;
+  opacity: 0.25;
+}
+/** ==== FIN ==== */
+
+
+
+/** ==== Clases para el list de la búsqueda por descripción en el punto de venta ==== */
+#descripcionArticulo-list{
+  position: absolute !important; 
+  overflow-y: scroll;
+  list-style:none;
+  margin-top:35px;
+  padding: 0px;
+  width:300px;
+  max-height: 200px;
+}
+#descripcionArticulo-list li{
+  padding: 10px; 
+  background: #f0f0f0; 
+  border-bottom: #bbb9b9 1px solid;
+}
+#descripcionArticulo-list li:hover{
+  background:#ece3d2;
+  cursor: pointer;
+}
+
+#descripcionArticulo-list li.selected{
+  background:#ece3d2;
+  cursor: pointer;
+}
+/** ==== FIN ==== */
+/** ==== Clases para que al desplegar tabla aparezca mano ==== */
+.dataTables_wrapper{
+  cursor: pointer;
+}
+/** ==== FIN ==== */
+
+
+
+/** ==== Clases para el progress bar ==== */
+#myProgressGuardar, #myProgressRegularizar, #myProgressCrearInventario {
+  width: 100%;
+  background-color: rgb(179, 179, 179);
+}
+
+#myBarGuardar, #myBarRegularizar, #myBarCrearInventario {
+  width: 1%;
+  height: 30px;
+  background-color: #3c8dbc;
+}
+/** ==== FIN ==== */
