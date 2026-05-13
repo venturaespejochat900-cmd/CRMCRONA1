@@ -37,9 +37,14 @@
         <form action="{{url('/login/validarLogin')}}" id="login" method="POST">
             <!-- AÑADIMOS TOKEN csrf para poder mandar formulario por post -->
                 @csrf
+          @if ($errors->any())
+          <div class="alert alert-danger py-2 small" role="alert">
+            {{ $errors->first() }}
+          </div>
+          @endif
           <div class="form-element form-stack col-6">
             <label for="username-login" class="form-label">Usuario</label>
-            <input type="text" id="form-usuario" name="email" required>
+            <input type="text" id="form-usuario" name="email" value="{{ old('email') }}" required>
           </div>
           <div class="form-element form-stack col-6">
             <label for="password-login" class="form-label">Contraseña</label>

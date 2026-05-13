@@ -51,6 +51,22 @@
                 </div>​                                         
             </a>            
         </div>
+        <div class="w-1/2 md:w-2/2 p-4">
+            <a href="{{ route('seguridad.2fa') }}">
+                <div class="flex items-center justify-between p-8 rounded-xl shadow-md" style="background-color: #2d3748;">
+                    <div>
+                        <h3 class="mb-2 text-lg font-semibold text-white"> SEGURIDAD </h3>
+                        <p class="text-gray-300 text-sm">Verificación en dos pasos</p>
+                        <p class="small-box-footer text-gray-200">Configurar<i class="fa fa-arrow-circle-right"></i></p>
+                    </div>
+                    <div>
+                        <span style="font-size: 48px;" class="text-white">
+                            <i class="fas fa-shield-alt"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </div>
         <?php
             if(session('tipo') == 3 || session('tipo')>3){
         ?>

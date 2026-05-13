@@ -3,6 +3,7 @@
 use App\Http\Controllers\ArticuloController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LOGIN;
+use App\Http\Controllers\TwoFactorController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\Controller;
@@ -26,9 +27,17 @@ use App\Http\Controllers\PotencialesController;
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 //LOGIN
-Route::get('/',[LOGIN::class,'index'])->name('/');
-Route::post('/login/validarLogin',[LOGIN::class,'validarLogin'])->name('validarLogin');
-Route::get('/inicio',[LOGIN::class,'redirigirInicio'])->name('redirigirInicio');
+Route::get('/', [LOGIN::class, 'index'])->name('login');
+Route::post('/login/validarLogin', [LOGIN::class, 'validarLogin'])->name('validarLogin');
+Route::get('/login/verificacion-2fa', [TwoFactorController::class, 'showLoginVerification'])->name('login.verificar2fa');
+Route::post('/login/verificacion-2fa', [TwoFactorController::class, 'submitLoginVerification'])->name('login.verificar2fa.submit');
+Route::post('/login/verificacion-2fa/cancelar', [TwoFactorController::class, 'cancelLoginVerification'])->name('login.verificar2fa.cancelar');
+
+Route::get('/seguridad/2fa', [TwoFactorController::class, 'showActivationForm'])->name('seguridad.2fa');
+Route::post('/seguridad/2fa/activar', [TwoFactorController::class, 'startActivation'])->name('seguridad.2fa.activar');
+Route::post('/seguridad/2fa/confirmar', [TwoFactorController::class, 'confirmActivation'])->name('seguridad.2fa.confirmar');
+
+Route::get('/inicio', [LOGIN::class, 'redirigirInicio'])->name('redirigirInicio');
 
 //Dashboard
 Route::get('/dashboard',[DashboardController::class,'index'])->name('dashboard');
