@@ -36,6 +36,7 @@ Route::post('/login/verificacion-2fa/cancelar', [TwoFactorController::class, 'ca
 Route::get('/seguridad/2fa', [TwoFactorController::class, 'showActivationForm'])->name('seguridad.2fa');
 Route::post('/seguridad/2fa/activar', [TwoFactorController::class, 'startActivation'])->name('seguridad.2fa.activar');
 Route::post('/seguridad/2fa/confirmar', [TwoFactorController::class, 'confirmActivation'])->name('seguridad.2fa.confirmar');
+Route::post('/seguridad/2fa/desactivar', [TwoFactorController::class, 'disableTwoFactor'])->name('seguridad.2fa.desactivar');
 
 Route::get('/inicio', [LOGIN::class, 'redirigirInicio'])->name('redirigirInicio');
 

@@ -142,6 +142,49 @@ class TwoFactorController extends Controller
         return redirect()->route('seguridad.2fa')->with('status', 'Verificación en dos pasos activada correctamente.');
     }
 
+    /**
+     * Desactiva 2FA tras validar un código TOTP actual (sesión ya autenticada).
+     */
+    public function disableTwoFactor(Request $request)
+    {
+        $request->validate([
+            'code' => 'required|string|size:6',
+        ]);
+
+        if (!session('codigoComisionista')) {
+            return redirect('/');
+        }
+
+        $comisionista = Comisionista::where('CodigoComisionista', session('codigoComisionista'))->first();
+        if (!$comisionista || !$comisionista->twoFactorIsConfigured()) {
+            return redirect()->route('seguridad.2fa')->with('status', 'La verificación en dos pasos no estaba activa.');
+        }
+
+        $secretCol = Comisionista::twoFactorSecretColumn();
+        $secretEnc = $comisionista->getAttribute($secretCol);
+        try {
+            $secret = Crypt::decryptString($secretEnc);
+        } catch (\Throwable $e) {
+            return redirect()->route('seguridad.2fa')->withErrors(['disable_code' => 'No se pudo leer el secreto. Contacte con administración.']);
+        }
+
+        $google2fa = new Google2FA();
+        if (!$google2fa->verifyKey($secret, $request->input('code'))) {
+            return redirect()->route('seguridad.2fa')->withErrors(['disable_code' => 'Código incorrecto.']);
+        }
+
+        $clearSecret = config('sage_2fa.cleared_secret');
+        $clearConfirmed = config('sage_2fa.cleared_confirmed');
+
+        $comisionista->setAttribute($secretCol, $clearSecret);
+        $comisionista->setAttribute(Comisionista::twoFactorConfirmedColumn(), $clearConfirmed);
+        $comisionista->save();
+
+        session()->forget(self::SESSION_ENROLL_SECRET);
+
+        return redirect()->route('seguridad.2fa')->with('status', 'Verificación en dos pasos desactivada. Puede borrar la cuenta en su app de autenticación.');
+    }
+
     private function activationPendingView(Comisionista $comisionista)
     {
         if (!session(self::SESSION_ENROLL_SECRET)) {

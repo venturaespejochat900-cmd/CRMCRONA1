@@ -22,4 +22,13 @@ return [
 
     'confirmed_column' => env('SAGE_COMISIONISTA_2FA_CONFIRMED', 'CRM_TwoFactorConfirmedAt'),
 
+    /*
+    | Valores al desactivar 2FA desde el CRM. Por defecto NULL (columnas deben
+    | permitir NULL). Si en Sage el texto es NOT NULL, defina cadena vacía:
+    | SAGE_COMISIONISTA_2FA_CLEARED_SECRET=""
+    */
+    'cleared_secret' => env('SAGE_COMISIONISTA_2FA_CLEARED_SECRET', null),
+
+    'cleared_confirmed' => env('SAGE_COMISIONISTA_2FA_CLEARED_CONFIRMED', null),
+
 ];
