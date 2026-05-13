@@ -75,7 +75,6 @@ class TwoFactorController extends Controller
         return view('auth.configurar-2fa', [
             'comisionista' => $comisionista,
             'alreadyEnabled' => $comisionista->twoFactorIsConfigured(),
-            'qrUrl' => null,
             'otpauthUrl' => null,
         ]);
     }
@@ -103,12 +102,9 @@ class TwoFactorController extends Controller
 
         session([self::SESSION_ENROLL_SECRET => Crypt::encryptString($secret)]);
 
-        $qrUrl = 'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . rawurlencode($otpauthUrl);
-
         return view('auth.configurar-2fa', [
             'comisionista' => $comisionista,
             'alreadyEnabled' => false,
-            'qrUrl' => $qrUrl,
             'otpauthUrl' => $otpauthUrl,
         ]);
     }
@@ -157,12 +153,10 @@ class TwoFactorController extends Controller
         $label = $comisionista->AccesoUsuario ?: ('comisionista_' . $comisionista->CodigoComisionista);
         $issuer = config('app.name', 'CRM');
         $otpauthUrl = $google2fa->getQRCodeUrl($issuer, $label, $secret);
-        $qrUrl = 'https://chart.googleapis.com/chart?chs=200x200&chld=M|0&cht=qr&chl=' . rawurlencode($otpauthUrl);
 
         return view('auth.configurar-2fa', [
             'comisionista' => $comisionista,
             'alreadyEnabled' => false,
-            'qrUrl' => $qrUrl,
             'otpauthUrl' => $otpauthUrl,
         ]);
     }

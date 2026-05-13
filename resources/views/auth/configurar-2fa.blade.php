@@ -26,15 +26,13 @@
                     @if ($alreadyEnabled)
                         <p class="mb-0">La verificación en dos pasos ya está activa en su cuenta.</p>
                         <a href="{{ url('/inicios') }}" class="btn btn-secondary mt-3">Volver al inicio</a>
-                    @elseif ($qrUrl)
+                    @elseif ($otpauthUrl)
                         <p class="text-muted">Escanee el código QR con su aplicación de autenticación y confirme con el código de 6 dígitos.</p>
                         <div class="text-center my-3">
-                            <img src="{{ $qrUrl }}" alt="Código QR" width="200" height="200" class="border rounded">
+                            <div id="crm-twofa-qrcode" class="d-inline-block p-2 border rounded bg-white"></div>
                         </div>
-                        @if ($otpauthUrl)
-                            <p class="small text-muted">Si no puede usar el QR, añada una cuenta manualmente con esta clave (formato otpauth):</p>
-                            <pre class="small bg-white border p-2 text-break">{{ $otpauthUrl }}</pre>
-                        @endif
+                        <p class="small text-muted">Si no ve el QR, añada la cuenta manualmente en la app con esta clave (formato otpauth):</p>
+                        <pre class="small bg-white border p-2 text-break">{{ $otpauthUrl }}</pre>
 
                         <form method="post" action="{{ route('seguridad.2fa.confirmar') }}" class="mt-4">
                             @csrf
@@ -59,5 +57,22 @@
         </div>
     </div>
 </div>
+@if (!empty($otpauthUrl))
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var wrap = document.getElementById('crm-twofa-qrcode');
+    var otpauth = @json($otpauthUrl);
+    if (wrap && typeof QRCode !== 'undefined' && otpauth) {
+        new QRCode(wrap, {
+            text: otpauth,
+            width: 200,
+            height: 200,
+            correctLevel: QRCode.CorrectLevel.M
+        });
+    }
+});
+</script>
+@endif
 </body>
 </html>
